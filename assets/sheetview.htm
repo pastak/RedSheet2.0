@@ -1,0 +1,45 @@
+<html>
+<head>
+
+<script type="text/javascript" src="./jquery-1.4.2.js"></script>
+<script type="text/javascript">
+<!--
+	function ChangeFontSize(size){
+		$("#content").css("font-size",size)
+	}
+	function setSheet(t){
+		t=t.replace(/\?(.*?)\?/g,"<span class='hide'><span>$1</span></span>");
+		//var sheet=t.replace(/\\\n/g,"<br />");
+		var sheet=t;
+		$("#content").html(sheet);
+		$(".hide").click(function(){
+			if($(this).hasClass("hide")){
+				$(this).removeClass("hide").addClass("display");
+			}else{
+				$(this).removeClass("display").addClass("hide");
+			}
+		})
+	}
+-->
+</script>
+<style>
+.hide{
+	color:red;
+	background-color:red;
+	font-weight:bold;
+}
+.hide span{
+	visibility:hidden;
+}
+.display{
+	color:red;
+	font-weight:bold;
+}
+</style>
+</head>
+<body onload="ChangeFontSize('20px')">
+	<div id="content">
+		loading.....
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript" src="./jquery-1.4.2.js"></script>
+<script type="text/javascript">
+	function setSheet(t){
+		//var sheet=t.replace("/\?(.*)\?/g","<span class='hide'>$1</span>");
+		alert(t);
+		$("#content").html(t);
+	}
+</script>
+</head>
+<body>
+	<h1>red sheet2.0</h1>
+	<div id="content">
+		
+	</div>
+</body>
+</html>

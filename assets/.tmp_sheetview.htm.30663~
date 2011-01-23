@@ -1,0 +1,22 @@
+<html>
+<head>
+<!--
+<script type="text/javascript" src="./jquery-1.4.2.js"></script>
+-->
+<script type="text/javascript">
+<!--
+	function setSheet(t){
+		//var sheet=t.replace("/\?(.*)\?/g","<span class='hide'>$1</span>");
+		alert(t);
+		$("#content").html(t);
+	}
+-->
+</script>
+</head>
+<body onload="alert('aaa');">
+	<h1>red sheet2.0</h1>
+	<div id="content">
+		
+	</div>
+</body>
+</html>
