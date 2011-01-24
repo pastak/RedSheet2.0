@@ -12,6 +12,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.util.EntityUtils;
+
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -68,52 +71,7 @@ public class sheetdownload extends Activity{
         button.setOnClickListener(new View.OnClickListener(){
         	@Override
 			public void onClick(View v) {
-				EditText et=(EditText)findViewById(R.id.EditText01);
-				final String s=et.getText().toString();
-					final EditText edtInput=new EditText(me);
-					new AlertDialog.Builder(me)
-					.setTitle("file name")
-			        .setMessage("plz file name to save\n(only use alphabet and number)")
-			        .setView(edtInput)
-			        .setPositiveButton("OK", new DialogInterface.OnClickListener(){
-			        	public void onClick(DialogInterface dialog, int whichButton){
-			        		SaveFileName=edtInput.getText().toString();
-			        		OutputStream out;
-							try {
-								out = openFileOutput(SaveFileName+".txt",MODE_PRIVATE);
-								PrintWriter writer =
-								new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
-								writer.append(s);
-								writer.close();
-								new AlertDialog.Builder(me)
-						    	.setTitle("Success!")
-						    	.setMessage("Download New Sheet!!\n go to view this sheet?")
-						    	.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int which) {
-										Intent intent=new Intent(me,SheetView.class);
-										intent.putExtra("filename", SaveFileName+".txt");
-										intent.setAction(Intent.ACTION_VIEW);
-										sheetdownload.this.startActivity(intent);
-									}
-						    	})
-						    	.setNeutralButton("Back to Top", new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int which) {
-										Intent intent=new Intent(me,redsheet.class);
-										intent.setAction(Intent.ACTION_VIEW);
-										sheetdownload.this.startActivity(intent);
-									}
-						    	})
-						    	.setNegativeButton("download more", new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int which) {
-										Intent intent=new Intent(me,sheetdownload.class);
-										intent.setAction(Intent.ACTION_VIEW);
-										sheetdownload.this.startActivity(intent);
-									}
-								})
-						    	.show();
-							} catch (FileNotFoundException e) {} catch (IOException e) {}
-			        	}
-			        }).show();
+				sheetdownload.this.Save();
 			}
 		});
 	}
@@ -132,5 +90,76 @@ public class sheetdownload extends Activity{
 	    {
 	        return null;
 	    }
-	}	
+	}
+	public void Save(){
+		EditText et=(EditText)findViewById(R.id.EditText01);
+		final String s=et.getText().toString();
+			final EditText edtInput=new EditText(me);
+			new AlertDialog.Builder(me)
+			.setTitle("file name")
+	        .setMessage("plz file name to save\n(only use alphabet and number)")
+	        .setView(edtInput)
+	        .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+	        	public void onClick(DialogInterface dialog, int whichButton){
+	        		SaveFileName=edtInput.getText().toString();
+	        		OutputStream out;
+					try {
+						out = openFileOutput(SaveFileName+".txt",MODE_PRIVATE);
+						PrintWriter writer =
+						new PrintWriter(new OutputStreamWriter(out,"UTF-8"));
+						writer.append(s);
+						writer.close();
+						new AlertDialog.Builder(me)
+				    	.setTitle("Success!")
+				    	.setMessage("Download New Sheet!!\n go to view this sheet?")
+				    	.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent=new Intent(me,SheetView.class);
+								intent.putExtra("filename", SaveFileName+".txt");
+								intent.setAction(Intent.ACTION_VIEW);
+								sheetdownload.this.startActivity(intent);
+							}
+				    	})
+				    	.setNeutralButton("Back to Top", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent=new Intent(me,redsheet.class);
+								intent.setAction(Intent.ACTION_VIEW);
+								sheetdownload.this.startActivity(intent);
+							}
+				    	})
+				    	.setNegativeButton("download more", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent=new Intent(me,sheetdownload.class);
+								intent.setAction(Intent.ACTION_VIEW);
+								sheetdownload.this.startActivity(intent);
+							}
+						})
+				    	.show();
+					} catch (FileNotFoundException e) {} catch (IOException e) {}
+	        	}
+	        }).show();
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		super.onCreateOptionsMenu(menu);
+		menu.add(0,0,Menu.NONE,"save")
+		.setIcon(android.R.drawable.ic_menu_save);
+		menu.add(0,1,Menu.NONE,"Back to Top")
+		.setIcon(android.R.drawable.ic_menu_revert);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	switch (item.getItemId()) {
+		case 0:
+			sheetdownload.this.Save();
+			return true;
+		case 1: 
+			Intent intent=new Intent(me,redsheet.class);
+			intent.setAction(Intent.ACTION_VIEW);
+			sheetdownload.this.startActivity(intent);
+			return true;
+	}
+	return super.onOptionsItemSelected(item);
+	}
 }
