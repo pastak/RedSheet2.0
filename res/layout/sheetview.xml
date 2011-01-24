@@ -7,7 +7,6 @@
 <Button android:id="@+id/Button01" android:layout_width="wrap_content" android:text="Large" android:layout_height="40px"></Button>
 <Button android:id="@+id/Button02" android:layout_width="wrap_content" android:text="Medium" android:layout_height="40px"></Button>
 <Button android:id="@+id/Button03" android:layout_width="wrap_content" android:text="Small" android:layout_height="40px"></Button>
-<Button android:id="@+id/Button04" android:layout_width="wrap_content" android:text="Edit" android:layout_height="40px"></Button>
 </LinearLayout>
 <WebView  
      android:id="@+id/webview"  

@@ -75,7 +75,7 @@ public class Makenew extends Activity{
 		final EditText edtInput=new EditText(me);
 		new AlertDialog.Builder(me)
 		.setTitle("file name")
-        .setMessage("plz file name to save\n (only use alphabet and number)")
+        .setMessage("plz file name to save")
         .setView(edtInput)
         .setPositiveButton("OK", new DialogInterface.OnClickListener(){
         	public void onClick(DialogInterface dialog, int whichButton){
