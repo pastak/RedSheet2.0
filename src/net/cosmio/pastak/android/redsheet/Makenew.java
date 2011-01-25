@@ -108,4 +108,15 @@ public class Makenew extends Activity{
         	}	
         }).show();
 	}
+	@Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("STRING",editor.getText().toString() );
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    	super.onRestoreInstanceState(savedInstanceState);
+        editor.setText(savedInstanceState.getString("STRING"));        
+
+    }
 }

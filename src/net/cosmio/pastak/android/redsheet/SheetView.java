@@ -59,6 +59,8 @@ public class SheetView extends Activity{
 		menu.add(0,0,Menu.NONE,"Change Font Size");
 		menu.add(0,1,Menu.NONE,"Edit")
 		.setIcon(android.R.drawable.ic_menu_edit);
+		menu.add(0,3,Menu.NONE,"Delete")
+		.setIcon(android.R.drawable.ic_menu_delete);
 		menu.add(0,2,Menu.NONE,"Back to Top")
 		.setIcon(android.R.drawable.ic_menu_revert);
 		return true;
@@ -99,6 +101,29 @@ public class SheetView extends Activity{
 			intent=new Intent(SheetView.this,redsheet.class);
 			intent.setAction(Intent.ACTION_VIEW);
 			SheetView.this.startActivity(intent);
+			return true;
+		case 3:
+			if(deleteFile(sheetFileName)){
+				new AlertDialog.Builder(SheetView.this)
+		    	.setTitle("Success!")
+		    	.setMessage("This sheet is deleted")
+		    	.setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent=new Intent(SheetView.this,redsheet.class);
+					intent.setAction(Intent.ACTION_VIEW);
+					SheetView.this.startActivity(intent);
+				}
+		    	}).show();
+			}else{
+				new AlertDialog.Builder(SheetView.this)
+		    	.setTitle("Miss!")
+		    	.setMessage("please try again")
+		    	.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					
+				}
+		    	}).show();
+			}
 			return true;
 	}
 	return super.onOptionsItemSelected(item);

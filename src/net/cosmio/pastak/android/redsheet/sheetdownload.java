@@ -162,4 +162,17 @@ public class sheetdownload extends Activity{
 	}
 	return super.onOptionsItemSelected(item);
 	}
+	@Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        EditText et=(EditText)findViewById(R.id.EditText01);
+        outState.putString("STRING",et.getText().toString() );
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    	EditText et=(EditText)findViewById(R.id.EditText01);
+    	super.onRestoreInstanceState(savedInstanceState);
+        et.setText(savedInstanceState.getString("STRING"));        
+
+    }
 }
